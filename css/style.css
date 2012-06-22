@@ -1,0 +1,54 @@
+body {
+	background: #F4FCFC;
+}
+#header_wrapper {
+    color: #788CB4;
+    line-height: 40px;
+    margin: 0 8px;
+    font-size: 12pt;
+}
+#content {
+    width: 600px;
+    margin: 0 auto;
+}
+
+/* Rounded corners n' shadows */
+.bubble {
+	-webkit-border-radius:5px 5px 5px 5px;
+	-moz-border-radius:5px 5px 5px 5px;
+	border-radius:5px 5px 5px 5px;
+    min-height: 300px;
+    background: #D0ECF0;
+}
+.shadow {
+	box-shadow:         0 0 8px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.5);
+	-moz-box-shadow:    0 0 8px rgba(0,0,0,0.5);
+}
+.window {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mushroom Slider */
+input[type=range] {
+    -webkit-appearance:none;
+    width:400px;
+    height:5px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e1e2e9), color-stop(100%,#D9DAE4));
+    background: -webkit-linear-gradient(top, #e1e2e9 0%,#D9DAE4 100%); 
+    border-radius:4px;
+    box-shadow:inset 0 1px 0 rgba(0,0,0,0.14), 0 1px 0 rgba(255,255,255,1);
+    margin: 25px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    width:16px;
+    height:16px;
+    border-radius:16px;
+    background:url(../images/gumba.gif) no-repeat top;
+    cursor:pointer;
+}
