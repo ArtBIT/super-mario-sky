@@ -1,6 +1,7 @@
 Super-Mario-Sky
 ===============
-![Super Mario Sky](http://github.com/ArtBIT/super-mario-sky/raw/master/images/super_mario_sky.png) 
+![Super Mario Sky](http://github.com/ArtBIT/super-mario-sky/raw/master/images/super_mario_sky.png)
+
 Super Mario Sky is a simple jQuery plugin that allows you to easily create simple parallax scrolling clouds from old Super Mario Brothers games. 
 
 # Demo
