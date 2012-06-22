@@ -16,11 +16,31 @@
         </div>
         <div id="content_wrapper">
             <div id="content">
-                <div class="bubble shadow window">
+                <div class="tall wide bubble with-shadow">
                     <div class="screen"></div>
                 </div>
                 <div class="controlls">
                     <input id="size_slider" type="range" class="range" min="1" max="12" value="1"/>
+                </div>
+                <div class="wide centered yellow left-aligned bubble with-shadow auto-height">
+                <div class="pppp">
+<pre>
+jQuery(function(){
+  jQuery('.screen')
+    .sprite_layer({num_sprites: 5, xspeed: -10})
+    .sprite_layer({num_sprites: 5, xspeed: -20})
+    .sprite_layer({num_sprites: 2, xspeed: -30})
+    .sprite_layer({num_sprites: 1, xspeed: -40, sprite_class:'turtle'})
+    .sprite_layer({num_sprites: 1, xspeed: -75, sprite_class:'bullet'})
+    .sprite_layer({
+        num_sprites: 1, 
+        xspeed: 75, 
+        yspeed: -100, 
+        sprite_class:'mario-raccoon'
+    });
+});
+</pre>
+                </div>
                 </div>
             </div>
         </div>

@@ -25,13 +25,18 @@ jQuery.fn.sprite_layer = function(params) {
 			xspeed: 20,
 			yspeed: 0,
             sprite_class: 'cloud',
+            xbounce: false,
+            ybounce: false,
             opacity: 1
 		}
-		op = jQuery.extend(options, params);
-        op.num_sprites  = Math.max(MIN_SPRITES, Math.min(MAX_SPRITES, op.num_sprites));
-        op.opacity      = Math.max(0, Math.min(1, op.opacity));
-        op.xspeed        = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.xspeed));
-        op.yspeed        = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.yspeed));
+		var op = jQuery.extend(options, params);
+        op.num_sprites = Math.max(MIN_SPRITES, Math.min(MAX_SPRITES, op.num_sprites));
+        op.opacity     = Math.max(0, Math.min(1, op.opacity));
+        op.xspeed      = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.xspeed));
+        op.yspeed      = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.yspeed));
+        op.xbounce     = !!op.xbounce;
+        op.ybounce     = !!op.ybounce;
+        op.xbounce = op.ybounce = false; // not yet supported
 
         function generate_sprite() {
             var size = 'x' + Math.floor(Math.random()*(MAX_SPRITE_SIZE-1) + 1);
@@ -54,7 +59,6 @@ jQuery.fn.sprite_layer = function(params) {
             var w = $sprite.width();
             var t = Math.floor(Math.random()*(height - SPRITE_HEIGHT));
             var l = Math.floor(Math.random()*(width - w));
-            if (t > 290) console.log(height, h, t, $sprite);
             $sprite.css({top: t, left: l, opacity: op.opacity});
             $sprite_layer.append($sprite);
 
@@ -86,12 +90,19 @@ jQuery.fn.sprite_layer = function(params) {
             var dt = time - last_time;
             //console.log(dx,dt);
             xpos += dx * dt;
+
             if (Math.abs(xpos) > width) {
                 xpos = 0;
+                if (op.xbounce) {
+                    dx *= -1;
+                }
             }
             ypos += dy * dt;
             if (Math.abs(ypos) > height) {
                 ypos = 0;
+                if (op.ybounce) {
+                    dy *= -1;
+                }
             }
             $sprite_layer.css({left: Math.floor(xpos), top:  Math.floor(ypos)});
             last_time = time;
