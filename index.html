@@ -28,12 +28,12 @@
     <script type="text/javascript">
         jQuery(function(){
             jQuery('.screen')
-                .sprite_layer({num_sprites: 5, speed: -10})
-                .sprite_layer({num_sprites: 5, speed: -20})
-                .sprite_layer({num_sprites: 2, speed: -30})
-                .sprite_layer({num_sprites: 1, speed: -40, sprite_class:'turtle'})
-                .sprite_layer({num_sprites: 1, speed: -75, sprite_class:'bullet'})
-                .sprite_layer({num_sprites: 1, speed: 75, sprite_class:'mario-raccoon'});
+                .sprite_layer({num_sprites: 5, xspeed: -10})
+                .sprite_layer({num_sprites: 5, xspeed: -20})
+                .sprite_layer({num_sprites: 2, xspeed: -30})
+                .sprite_layer({num_sprites: 1, xspeed: -40, sprite_class:'turtle'})
+                .sprite_layer({num_sprites: 1, xspeed: -75, sprite_class:'bullet'})
+                .sprite_layer({num_sprites: 1, xspeed: 75, yspeed: -100, sprite_class:'mario-raccoon'});
         });
         // Bind the range slider's change event to controll
         // the size of the clouds

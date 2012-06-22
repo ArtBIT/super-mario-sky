@@ -22,14 +22,16 @@ jQuery.fn.sprite_layer = function(params) {
         // default options
 		var options = {
             num_sprites: 10,
-			speed: 20,
+			xspeed: 20,
+			yspeed: 0,
             sprite_class: 'cloud',
             opacity: 1
 		}
 		op = jQuery.extend(options, params);
         op.num_sprites  = Math.max(MIN_SPRITES, Math.min(MAX_SPRITES, op.num_sprites));
         op.opacity      = Math.max(0, Math.min(1, op.opacity));
-        op.speed        = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.speed));
+        op.xspeed        = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.xspeed));
+        op.yspeed        = Math.min(MAX_SPEED, Math.max(MIN_SPEED, op.yspeed));
 
         function generate_sprite() {
             var size = 'x' + Math.floor(Math.random()*(MAX_SPRITE_SIZE-1) + 1);
@@ -56,30 +58,42 @@ jQuery.fn.sprite_layer = function(params) {
             $sprite.css({top: t, left: l, opacity: op.opacity});
             $sprite_layer.append($sprite);
 
-            // We basically have two layers one next to each other.
-            // We scroll them both, and once the first layer leaves 
-            // the screen, we move them back to the starting position,
+            // We basically have four layers lined up in a 2x2 grid
+            // We scroll them all, and once the first row (or column) of layers
+            // leaves the screen, we move them back to its starting position,
             // which makes it look like the layer animation loops forever.
-            // That's why we need to copy the sprite, onto the secondary
-            // layer, which is shifted to the right, for the width of the layer.
-            var direction = op.speed > 0 ? 1 : -1;
-            $sprite = $sprite.clone();
-            $sprite.css({top: t, left: l+(-1*direction*width)});
-            $sprite_layer.append($sprite);
+            // That's why we need to copy the sprite four times, and place it 
+            // onto each of the layers
+            var xdirection = op.xspeed > 0 ? 1 : op.xspeed ? -1 : 0;
+            var ydirection = op.yspeed > 0 ? 1 : op.yspeed ? -1 : 0;
+            if (xdirection != 0 ) {
+                $sprite_layer.append($sprite.clone().css({top: t, left: l+(-1*xdirection*width)}));
+                $sprite_layer.append($sprite.clone().css({top: t+(-1*ydirection*height), left: l+(-1*xdirection*width)}));
+            }
+            if (ydirection != 0) {
+                $sprite_layer.append($sprite.clone().css({top: t+(-1*ydirection*height), left: l}));
+            }
         }
-        var position = $sprite_layer.position().left;
+        var xpos = $sprite_layer.position().left;
+        var ypos = $sprite_layer.position().top;
         var last_time = (new Date()).getTime();
-        var dx = op.speed / 1000; // pixels per 1s (100ms)
+        var dx = op.xspeed / 1000; // pixels per 1s (100ms)
+        var dy = op.yspeed / 1000; // pixels per 1s (100ms)
+
         function animate_sprite_layer(time) {
             window.requestAnimationFrame(animate_sprite_layer);
             time = time || last_time;
             var dt = time - last_time;
             //console.log(dx,dt);
-            position += dx * dt;
-            if (Math.abs(position) > width) {
-                position = 0;
+            xpos += dx * dt;
+            if (Math.abs(xpos) > width) {
+                xpos = 0;
             }
-            $sprite_layer.css({left: Math.floor(position)});
+            ypos += dy * dt;
+            if (Math.abs(ypos) > height) {
+                ypos = 0;
+            }
+            $sprite_layer.css({left: Math.floor(xpos), top:  Math.floor(ypos)});
             last_time = time;
         }
         animate_sprite_layer(0);
