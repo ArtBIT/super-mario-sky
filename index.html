@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Super-mario-sky : Creates a scrolling Super Mario inspired sky scape." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Super-mario-sky</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ArtBIT/super-mario-sky">View on GitHub</a>
+
+          <h1 id="project_title">Super-mario-sky</h1>
+          <h2 id="project_tagline">Creates a scrolling Super Mario inspired sky scape.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ArtBIT/super-mario-sky/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ArtBIT/super-mario-sky/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Super-Mario-Sky</h1>
+
+<p><img src="http://github.com/ArtBIT/super-mario-sky/raw/master/images/super_mario_sky.png" alt="Super Mario Sky"> 
+Super Mario Sky is a simple jQuery plugin that allows you to easily create simple parallax scrolling clouds from old Super Mario Brothers games. </p>
+
+<h1>Demo</h1>
+
+<p><a href="http://lab.djordjeungar.com/experiment/clouds">Click Here</a> to see a live demo.</p>
+
+<h1>Example Usage</h1>
+
+<p>Create a simple html block with set width and height:</p>
+
+<pre><code>&lt;div class="screen" style="width: 300px; height: 300px; overflow: hidden"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>And populate it with several layers of Mario clouds:</p>
+
+<pre><code>&lt;script type='text/javascript'&gt;
+    jQuery(function(){
+  jQuery('.screen')
+    .sprite_layer({num_sprites: 5, xspeed: -10})
+    .sprite_layer({num_sprites: 5, xspeed: -20})
+    .sprite_layer({num_sprites: 2, xspeed: -30})
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>See the <a href="http://github.com/ArtBIT/super-mario-sky/blob/master/index.html">index.html</a> file for an example with multiple sprite classes.</p>
+
+<h1>Options</h1>
+
+<p><code>sprite_layer</code> method accepts the following options:</p>
+
+<ul>
+<li>
+<strong>num_sprites</strong> - the number of sprites to generate on the layer</li>
+<li>
+<strong>xspeed</strong> - horizontal speed of the layer (in pixels per second)</li>
+<li>
+<strong>yspeed</strong> - vertical speed of the layer (in pixels per second)</li>
+<li>
+<strong>sprite_class</strong> - css class to apply to the sprite html element</li>
+<li>
+<strong>opacity</strong> - layer opacity</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Super-mario-sky maintained by <a href="https://github.com/ArtBIT">ArtBIT</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
