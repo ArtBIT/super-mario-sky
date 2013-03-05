@@ -80,13 +80,13 @@ jQuery.fn.sprite_layer = function(params) {
         }
         var xpos = $sprite_layer.position().left;
         var ypos = $sprite_layer.position().top;
-        var last_time = (new Date()).getTime();
+        var last_time;
         var dx = op.xspeed / 1000; // pixels per 1s (100ms)
         var dy = op.yspeed / 1000; // pixels per 1s (100ms)
 
         function animate_sprite_layer(time) {
             window.requestAnimationFrame(animate_sprite_layer);
-            time = time || last_time;
+            last_time = last_time || time;
             var dt = time - last_time;
             //console.log(dx,dt);
             xpos += dx * dt;
